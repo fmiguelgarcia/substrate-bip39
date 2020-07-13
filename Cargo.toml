@@ -10,10 +10,21 @@ repository = "https://github.com/paritytech/substrate-bip39"
 
 [dependencies]
 pbkdf2 = { version = "0.3.0", default-features = false }
-sha2 = "0.8.0"
-hmac = "0.7.1"
-schnorrkel = "0.9.0"
+sha2 = { version = "0.8.0", default-features = false }
+hmac = { version = "0.7.1" }
+schnorrkel = { version = "0.9.1", default-features = false }
 
 [dev-dependencies]
 tiny-bip39 = "0.6.2"
 rustc-hex = "2.0.1"
+
+[features]
+default = ["std", "u64_backend"]
+std = [
+	"schnorrkel/std",
+	"sha2/std",
+]
+
+u64_backend = ["schnorrkel/u64_backend"]
+u32_backend = ["schnorrkel/u32_backend"]
+avx2_backend = ["schnorrkel/avx2_backend"]
